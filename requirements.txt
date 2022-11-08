@@ -1,0 +1,12 @@
+fastapi[all]
+pandas
+nltk
+matplotlib
+seaborn
+ipykernel
+wordcloud
+scikit-learn
+contractions
+autocorrect
+emoji
+imbalanced-learn
