@@ -34,44 +34,28 @@ async def root():
 
 @app.post("/predict/svm")
 async def predict_svm(data: TextData):
-    # Load the model
-    with open("data/svm_clf.pkl", "rb") as f:
-        model = pickle.load(f)
-    # Make a prediction
-    text = text_cleaner(data.text)
-    text = text_vectoriser([text])
-    prediction = model.predict(text)
-    return {"prediction": prediction[0]}
+    # Analyse the text
+    label = analysis(text_vectoriser([data.text]), "svm")
+    result = label_encoder(label[0])
+    return result
 
 @app.post("/predict/nb")
 async def predict_nb(data: TextData):
-    # Load the model
-    with open("data/nb_clf.pkl", "rb") as f:
-        model = pickle.load(f)
-    # Make a prediction
-    text = text_vectoriser([data.text])
-    prediction = model.predict(text)
-    return {"prediction": prediction[0]}
+    # Analyse the text
+    label = analysis(text_vectoriser([data.text]), "nb")
+    result = label_encoder(label[0])
+    return result
 
 @app.post("/predict/knn")
 async def predict_knn(data: TextData):
-    # Load the model
-    with open("data/knn_clf.pkl", "rb") as f:
-        model = pickle.load(f)
-    # Make a prediction
-    text = text_cleaner(data.text)
-    text = text_vectoriser([text])
-    prediction = model.predict(text)
-    return {"prediction": prediction[0]}
+    # Analyse the text
+    label = analysis(text_vectoriser([data.text]), "knn")
+    result = label_encoder(label[0])
+    return result
 
 @app.post("/predict/rf")
 async def predict_rf(data: TextData):
-    # Load the model
-    with open("data/rf_clf.pkl", "rb") as f:
-        model = pickle.load(f)
-    # Make a prediction
-    text = text_cleaner(data.text)
-    text = text_vectoriser([text])
-    prediction = model.predict(text)
-    return {"prediction": prediction[0]}
-
+    # Analyse the text
+    label = analysis(text_vectoriser([data.text]), "rf")
+    result = label_encoder(label[0])
+    return result

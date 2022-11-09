@@ -15,6 +15,22 @@ nltk.download('wordnet')
 nltk.download('punkt')
 nltk.download('stopwords')
 
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import Pipeline
+
+from sklearn.svm import SVC
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.metrics import classification_report
+from sklearn.model_selection import cross_val_score
+
 # convert to lower case
 def text_lower(text):
     text = text.str.lower()
@@ -117,7 +133,25 @@ def text_vectoriser(text):
     text = pd.Series(text)
     text = preprocees(text)
     text = [text[0],]
-    vectoriser = pickle.load(open('data/vectoriser.pkl', 'rb'))
-    text = vectoriser.transform([text])
+    vectorizer = pickle.load(open("data/vectorizer.pkl", "rb"))
+    vector = vectorizer.transform(text)
 
-    return text
+    return vector
+
+def analysis(text, model):
+    with open("data/" + model + "_clf.pkl", "rb") as f:
+        load_model = pickle.load(f)
+    prediction = load_model.predict(text)
+    return prediction
+
+def label_encoder(prediction):
+    if prediction == "age":
+        return {"status": 1, "message": "Cyberbullying on basis of age is detected.", "label": "age"}
+    elif prediction == "ethnicity":
+        return {"status": 1, "message": "Cyberbullying on basis of ethnicity is detected.", "label": "ethnicity"}
+    elif prediction == "gender":
+        return {"status": 1, "message": "Cyberbullying on basis of gender is detected.", "label": "gender"}
+    elif prediction == "religion":
+        return {"status": 1, "message": "Cyberbullying on basis of religion is detected.", "label": "religion"}
+    elif prediction == "not_cyberbullying":
+        return {"status": 0, "message": "No Cyberbullying case is detected.", "label": "not_cyberbullying"}
