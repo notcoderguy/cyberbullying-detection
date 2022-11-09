@@ -29,7 +29,8 @@ async def root():
         "co-author": "Zubin Singh",
         "contributors": "Ishan Chopra, Shubham Singh",
         "version": "1.0.0",
-        "documentation": "http://localhost:8000/redoc"
+        "documentation": "http://localhost:8000/redoc",
+        "github": "https://github.com/notcoderguy/cyberbullying-detection-api"
         }
 
 @app.post("/predict/svm")
