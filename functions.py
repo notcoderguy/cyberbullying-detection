@@ -11,6 +11,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem import SnowballStemmer
 from nltk.tokenize import RegexpTokenizer
+nltk.download('omw-1.4')
 nltk.download('wordnet')
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -142,7 +143,7 @@ def analysis(text, model):
     prediction = load_model.predict(text)
     return prediction
 
-def label_encoder(prediction):
+def response_gen(prediction):
     if prediction == "age":
         return {"status": 1, "message": "Cyberbullying on basis of age is detected.", "label": "age"}
     elif prediction == "ethnicity":
