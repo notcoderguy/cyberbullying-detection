@@ -1,34 +1,17 @@
 import pickle
 import re
 import pandas as pd
-import numpy as np
 import string
 import emoji
 from contractions import contractions_dict
 
 import nltk
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from nltk.stem import SnowballStemmer
 from nltk.tokenize import RegexpTokenizer
 nltk.download('omw-1.4')
 nltk.download('wordnet')
 nltk.download('punkt')
 nltk.download('stopwords')
-
-from sklearn import preprocessing
-from sklearn.model_selection import train_test_split
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.pipeline import Pipeline
-
-from sklearn.svm import SVC
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import RandomForestClassifier
-
-from sklearn.metrics import classification_report
-from sklearn.model_selection import cross_val_score
 
 # convert to lower case
 def text_lower(text):

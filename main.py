@@ -1,20 +1,7 @@
-import pickle
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 from functions import *
-import pickle
-import re
-import string
-import emoji
-from contractions import contractions_dict
-
-import nltk
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from nltk.stem import SnowballStemmer
-from nltk.tokenize import RegexpTokenizer
-nltk.download('stopwords')
 
 app = FastAPI()
 
@@ -27,7 +14,7 @@ async def root():
         "message": "Welcome to Cyberbullying Detection API.",
         "authors": [
                         "Vasu Grover [RA1911003030248]", 
-                        "Ishan Chopra [RA1911003030261]", 
+                        "Ishan Chopra [RA1911003030267]", 
                         "Zubin Singh [RA1911003030299]", 
                         "Shubham Singh [RA1911003030300]"
                     ],
