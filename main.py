@@ -13,40 +13,16 @@ async def root():
     return {
         "message": "Welcome to Cyberbullying Detection API.",
         "authors": [
-                        "Vasu Grover [RA1911003030248]", 
-                        "Ishan Chopra [RA1911003030267]", 
-                        "Zubin Singh [RA1911003030299]", 
-                        "Shubham Singh [RA1911003030300]"
+                        "Vasu Grover [NotCoderGuy]",
                     ],
         "version": "1.0.0",
-        "documentation": "http://localhost:8000/redoc",
-        "github": "https://github.com/notcoderguy/cyberbullying-detection-api"
+        "github": "https://github.com/notcoderguy/cyberbullyingDetectionAPI"
         }
 
-@app.post("/analyse/svm")
+@app.post("/analyse")
 async def analyse_svm(data: TextData):
     # Analyse the text
     label = analysis(text_vectoriser([data.text]), "svm")
-    result = response_gen(label[0])
-    return result
-
-@app.post("/analyse/nb")
-async def analyse_nb(data: TextData):
-    # Analyse the text
-    label = analysis(text_vectoriser([data.text]), "nb")
-    result = response_gen(label[0])
-    return result
-
-@app.post("/analyse/knn")
-async def analyse_knn(data: TextData):
-    # Analyse the text
-    label = analysis(text_vectoriser([data.text]), "knn")
-    result = response_gen(label[0])
-    return result
-
-@app.post("/analyse/rf")
-async def analyse_rf(data: TextData):
-    # Analyse the text
-    label = analysis(text_vectoriser([data.text]), "rf")
+    print(label)
     result = response_gen(label[0])
     return result
